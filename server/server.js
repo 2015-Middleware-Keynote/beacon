@@ -15,14 +15,7 @@ var server = http.createServer(app);
 server.listen(port, ip);
 console.log(tag, log);
 
-var dataInit = Rx.Observable.forkJoin(
-  user.userInit
-).tapOnCompleted(function() {
-  require('./beacon/ws/beacon-live')(server);
-  require('./beacon/ws/beacon-playback')(server);
-  require('./beacon/ws/beacon-random')(server);
-  require('./beacon/ws/broker')(server);
-})
-.subscribeOnError(function(err) {
-  console.log(err.stack || err);
-});
+require('./beacon/ws/beacon-live')(server);
+require('./beacon/ws/beacon-playback')(server);
+require('./beacon/ws/beacon-random')(server);
+require('./beacon/ws/broker')(server);

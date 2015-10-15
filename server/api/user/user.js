@@ -59,12 +59,6 @@ var userInit = Rx.Observable.create(function (observer) {
   console.log('Users updated');
 });
 
-Rx.Observable.interval(20000).flatMap(function() {
-  return userInit;
-}).subscribeOnError(function(error) {
-  console.log(error);
-});
-
 var getUser = function(beaconId) {
   return users[beaconId] || {
     id: beaconId

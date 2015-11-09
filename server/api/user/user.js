@@ -6,7 +6,7 @@ var Rx = require('rx')
   , config = require('../../config')
   ;
 
-var users = _.range(0, 326).map(function(index) {
+var users = _.range(0, 350).map(function(index) {
   return {
     id: index
   , beaconId: index
@@ -59,9 +59,24 @@ var userInit = Rx.Observable.create(function (observer) {
   console.log('Users updated');
 });
 
+
 var getUser = function(beaconId) {
-  return users[beaconId] || {
-    id: beaconId
+  var userMap = {
+  '21940': 1,
+  '63138': 2,
+  '57492': 3,
+  '31855': 4,
+  '21708': 5,
+  '33274': 6,
+  '24424': 7,
+  '56901': 8,
+  '43366': 9,
+  '63595': 10,
+  '506'  : 12
+  }
+  var userId = beaconId > 326 ? userMap[beaconId] : beaconId;
+  return users[userId] || {
+  id: userId
   , beaconId: beaconId
   , name: ''
   };

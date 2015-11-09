@@ -15,7 +15,7 @@ var password = config.get('AMQ_PASSWORD');
 var getEnqueueCount = function(url) {
   return Rx.Observable.create(function (observer) {
   request.get({
-    baseUrl: 'http://184.72.167.147:8181/',
+    baseUrl: 'http://192.168.3.2:8181/',
     url: url,
     auth: {
       user: username,
@@ -54,7 +54,8 @@ var getEnqueueCount = function(url) {
 
 var enqueueCountsFeed = function() {
   return Rx.Observable.merge(
-    getEnqueueCount('/hawtio/jolokia/read/org.apache.activemq:type=Broker,brokerName=localhost,destinationType=Topic,destinationName=beaconEvents/EnqueueCount')
+ //   getEnqueueCount('/hawtio/jolokia/read/org.apache.activemq:type=Broker,brokerName=localhost,destinationType=Topic,destinationName=beaconEvents/EnqueueCount')
+     getEnqueueCount('/hawtio/jolokia/read/org.apache.activemq:type=Broker,brokerName=amq,destinationType=Topic,destinationName=beaconEvents/EnqueueCount')
       .map(function(count) {
         return {
           type: 'enqueueCount',
@@ -64,7 +65,8 @@ var enqueueCountsFeed = function() {
           }
         }
       }),
-    getEnqueueCount('/hawtio/jolokia/read/org.apache.activemq:type=Broker,brokerName=localhost,destinationType=Topic,destinationName=VirtualTopic.beaconEvents_processed/EnqueueCount')
+//    getEnqueueCount('/hawtio/jolokia/read/org.apache.activemq:type=Broker,brokerName=localhost,destinationType=Topic,destinationName=VirtualTopic.beaconEvents_processed/EnqueueCount')
+      getEnqueueCount('/hawtio/jolokia/read/org.apache.activemq:type=Broker,brokerName=amq,destinationType=Queue,destinationName=beaconEvents_processed/EnqueueCount')
       .map(function(count) {
         return {
           type: 'enqueueCount',

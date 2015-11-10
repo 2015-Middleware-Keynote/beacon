@@ -1,10 +1,8 @@
 'use strict';
 
 var locations = [
-  { id: 0, x_i: 400, y_i: 400, name: 'Scanner A', code: 'scannerA'}
-, { id: 1, x_i: 1000, y_i: 400, name: 'Scanner B', code: 'scannerB'}
-, { id: 2, x_i: 400, y_i: 1000, name: 'Scanner C', code: 'scannerC'}
-, { id: 3, x_i: 1000, y_i: 1000, name: 'Scanner D', code: 'scannerD'}
+  { id: 0, x_i: 700, y_i: 300, name: 'Scanner A', code: 'scannerA'}
+, { id: 1, x_i: 700, y_i: 900, name: 'Scanner B', code: 'scannerB'}
 ];
 
 var tag = 'API/LOCATION';
